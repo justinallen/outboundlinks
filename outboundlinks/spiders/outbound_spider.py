@@ -16,6 +16,9 @@ class OutboundSpider(CrawlSpider):
     """
     name = 'outbound'
     
+    # Class-level link extractor for efficiency
+    link_extractor = LinkExtractor()
+    
     def __init__(self, start_url=None, *args, **kwargs):
         """
         Initialize the spider with a start URL.
@@ -59,16 +62,15 @@ class OutboundSpider(CrawlSpider):
         # Get the current page URL
         source_page = response.url
         
-        # Extract all links from the page
-        link_extractor = LinkExtractor()
-        all_links = link_extractor.extract_links(response)
+        # Extract all links from the page using class-level link extractor
+        all_links = self.link_extractor.extract_links(response)
         
         # Filter for outbound links (links to different domains)
         for link in all_links:
             link_domain = urlparse(link.url).netloc
             
             # Check if the link is to a different domain (outbound)
-            if link_domain and link_domain != self.start_domain:
+            if link_domain and link_domain not in self.allowed_domains:
                 item = OutboundlinksItem()
                 item['outbound_link'] = link.url
                 item['source_page'] = source_page
