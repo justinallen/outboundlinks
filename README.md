@@ -1,10 +1,10 @@
-# outboundlinks
+# OUTBOUND LINKS
 
 Web scraper to crawl a website pulling down all outbound links
 
 ## Description
 
-This is a simple Python web scraper using Scrapy to recursively crawl an entire website, gathering all outbound links and the pages they are listed on. The scraper outputs a two-column CSV file with the outbound links and the page URLs where the links are found on the site.
+A simple Python web scraper using Scrapy to recursively crawl an entire website, gathering all outbound links and the pages they are listed on. The scraper outputs a two-column CSV file with the outbound links and the page URLs where the links are found on the site.
 
 ## Installation
 
