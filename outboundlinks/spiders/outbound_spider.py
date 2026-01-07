@@ -36,7 +36,6 @@ class OutboundSpider(CrawlSpider):
         # Extract the domain from start_url to define allowed_domains
         parsed_url = urlparse(start_url)
         self.allowed_domains = [parsed_url.netloc]
-        self.start_domain = parsed_url.netloc
         
         # Define rules for crawling
         # Follow all links within the same domain
